@@ -1,0 +1,5 @@
+{
+  "name": "NeuroView AI Visualizador DICOM",
+  "description": "Um visualizador de imagens médicas de nível profissional com manipulação em tempo real (Zoom, Pan, W/L), medições e análise integrada da IA Gemini.",
+  "requestFramePermissions": []
+}
