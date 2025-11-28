@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   Move, 
@@ -18,7 +19,8 @@ import {
   Download,
   Layers,
   FileImage,
-  ArrowRightLeft
+  ArrowRightLeft,
+  ScanLine
 } from 'lucide-react';
 
 export { 
@@ -40,5 +42,6 @@ export {
   Download,
   Layers,
   FileImage,
-  ArrowRightLeft
+  ArrowRightLeft,
+  ScanLine
 };

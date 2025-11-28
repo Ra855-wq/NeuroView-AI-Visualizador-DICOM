@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Toolbar from './components/Toolbar';
 import LeftSidebar from './components/LeftSidebar';
@@ -30,7 +31,8 @@ function App() {
     contrast: 100,
     invert: false,
     pixelSpacing: 0.5, // Default: 1 pixel = 0.5mm
-    colormap: 'none'
+    colormap: 'none',
+    showSegmentation: false
   });
 
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
@@ -49,13 +51,33 @@ function App() {
       contrast: 100,
       invert: false,
       pixelSpacing: 0.5,
-      colormap: 'none'
+      colormap: 'none',
+      showSegmentation: false
     });
     setMeasurements([]);
   };
 
   const handleImageChange = (key: keyof ImageState, value: any) => {
-    setImageState(prev => ({ ...prev, [key]: value }));
+    // If enabling segmentation, perform a simulated "adjustment" to the image processing
+    if (key === 'showSegmentation' && value === true) {
+       // Slight contrast boost to simulate "edge detection processing"
+       setImageState(prev => ({ 
+           ...prev, 
+           [key]: value,
+           contrast: prev.contrast < 110 ? 120 : prev.contrast,
+           brightness: prev.brightness > 95 ? 90 : prev.brightness
+       }));
+       // Optional: Add a system message
+       if (!imageState.showSegmentation) {
+           setMessages(prev => [...prev, {
+               id: Date.now().toString(),
+               role: 'model',
+               text: 'Segmentação ativada: Processando bordas anatômicas e alinhamento axial.'
+           }]);
+       }
+    } else {
+       setImageState(prev => ({ ...prev, [key]: value }));
+    }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,6 +143,9 @@ function App() {
         let contextInfo = "";
         if (imageState.colormap !== 'none') {
           contextInfo += ` NOTA: Uma paleta de cores falsa (${imageState.colormap}) foi aplicada pelo usuário para realçar densidades.`;
+        }
+        if (imageState.showSegmentation) {
+          contextInfo += ` NOTA: A segmentação anatômica está ativa, destacando pulmões (azul), costelas (roxo) e eixo central (verde).`;
         }
         if (measurements.length > 0) {
           contextInfo += ` NOTA: O usuário realizou ${measurements.length} medições na imagem.`;

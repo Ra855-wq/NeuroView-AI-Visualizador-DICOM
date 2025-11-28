@@ -1,3 +1,4 @@
+
 export type Tool = 'pan' | 'zoom' | 'wl' | 'measure' | 'calibrate';
 
 export type ColormapType = 'none' | 'hot' | 'jet' | 'purples';
@@ -20,6 +21,7 @@ export interface ImageState {
   invert: boolean;
   pixelSpacing: number; // mm per pixel
   colormap: ColormapType;
+  showSegmentation: boolean;
 }
 
 export interface ChatMessage {

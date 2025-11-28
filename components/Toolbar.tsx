@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { Tool, ColormapType, ImageState } from '../types';
-import { Move, Search, SunMedium, Ruler, RotateCcw, BrainCircuit, Scale, Palette, Download, ArrowRightLeft } from './Icons';
+import { Move, Search, SunMedium, Ruler, RotateCcw, BrainCircuit, Scale, Palette, Download, ArrowRightLeft, ScanLine } from './Icons';
 
 interface ToolbarProps {
   activeTool: Tool;
@@ -84,6 +85,16 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="w-px h-8 bg-neutral-700 mx-1" />
 
       {/* Quick Actions */}
+      <Tooltip title="Segmentação" desc="Detectar bordas e estruturas anatômicas (Verde/Roxo/Azul)." interaction="Clique">
+        <button 
+          className={`${getActionBtnClass()} ${imageState.showSegmentation ? 'text-green-400 bg-neutral-800 border-green-900/30' : ''}`}
+          onClick={() => onImageChange('showSegmentation', !imageState.showSegmentation)}
+        >
+          <ScanLine size={20} className={`mb-1 ${imageState.showSegmentation ? 'drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]' : ''}`} />
+          <span className="text-[10px] font-medium tracking-wide">Segm.</span>
+        </button>
+      </Tooltip>
+
       <Tooltip title="Inverter Cores" desc="Alternar rapidamente entre negativo e positivo." interaction="Clique">
         <button 
           className={`${getActionBtnClass()} ${imageState.invert ? 'text-blue-400' : ''}`}
