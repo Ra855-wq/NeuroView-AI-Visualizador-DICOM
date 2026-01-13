@@ -20,7 +20,23 @@ import {
   Layers,
   FileImage,
   ArrowRightLeft,
-  ScanLine
+  ScanLine,
+  Command,
+  ShieldCheck,
+  Cpu,
+  CheckCircle2,
+  AlertCircle,
+  Globe,
+  Settings,
+  HardDrive,
+  UserCheck,
+  ShieldAlert,
+  Loader2,
+  FileText,
+  Terminal,
+  Database,
+  Lock,
+  User
 } from 'lucide-react';
 
 export { 
@@ -43,5 +59,21 @@ export {
   Layers,
   FileImage,
   ArrowRightLeft,
-  ScanLine
+  ScanLine,
+  Command,
+  ShieldCheck,
+  Cpu,
+  CheckCircle2,
+  AlertCircle,
+  Globe,
+  Settings,
+  HardDrive,
+  UserCheck,
+  ShieldAlert,
+  Loader2,
+  FileText,
+  Terminal,
+  Database,
+  Lock,
+  User
 };
